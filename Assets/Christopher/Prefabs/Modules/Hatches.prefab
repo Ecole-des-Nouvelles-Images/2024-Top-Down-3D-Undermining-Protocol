@@ -168,13 +168,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781363539916161392}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41099977, y: 0.47899997, z: 0.2679999}
+  m_LocalRotation: {x: 0.5949275, y: 0.030345527, z: 0.155139, w: 0.78808147}
+  m_LocalPosition: {x: -0.89299995, y: 2.773, z: -0.9999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8149271332482241916}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 68.169, y: 38.684, z: 48.996}
 --- !u!108 &174322910124917375
 Light:
   m_ObjectHideFlags: 0
@@ -184,13 +184,13 @@ Light:
   m_GameObject: {fileID: 1781363539916161392}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.14772677, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 1
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+  m_Intensity: 5
+  m_Range: 15
+  m_SpotAngle: 71.62759
+  m_InnerSpotAngle: 21.93133
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -229,7 +229,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -321,7 +321,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74126ef1920f2ea47a0f37f60cbd6af2, type: 2}
+  - {fileID: 2100000, guid: 5fc5b5c7779623148a554f036d056b02, type: 2}
   - {fileID: 2100000, guid: e86155afc3513f84ea3ed99c428891e5, type: 2}
   - {fileID: 2100000, guid: 0ce6b113259759943bac3becb456ee17, type: 2}
   - {fileID: 2100000, guid: 065f0bb52793f984d9c0d16070f24bf8, type: 2}
@@ -460,7 +460,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.028497245, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.1
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -876,7 +876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8149271332482241916
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,7 +1260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6441007065402918142
 Transform:
   m_ObjectHideFlags: 0

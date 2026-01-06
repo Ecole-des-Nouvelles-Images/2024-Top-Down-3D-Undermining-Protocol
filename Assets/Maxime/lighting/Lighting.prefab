@@ -347,13 +347,13 @@ Light:
   m_GameObject: {fileID: 2323050848888454398}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.5484603, g: 0.69557047, b: 0.8018868, a: 1}
-  m_Intensity: 25
+  m_Intensity: 1
   m_Range: 45
-  m_SpotAngle: 179
-  m_InnerSpotAngle: 179
+  m_SpotAngle: 140
+  m_InnerSpotAngle: 55
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1693,7 +1693,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1748,7 +1748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c796acd37fd3741be97f9a2aa7baaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 150
+  rotationSpeed: 130
 --- !u!1001 &5438935187103293218
 PrefabInstance:
   m_ObjectHideFlags: 0
