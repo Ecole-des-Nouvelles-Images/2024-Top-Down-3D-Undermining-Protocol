@@ -11,14 +11,37 @@ namespace Christopher.Scripts.Modules
         [SerializeField] private GameObject redLights;
         [SerializeField] private AudioSource audioSource;
         
-        // Start is called before the first frame update
+        public void SetHighlight(bool highlight)
+        {
+            // Assuming you have a Material or Renderer for the highlight effect
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.material.SetFloat("_Highlight", highlight ? 1f : 0f);
+                // Or use a different property/method depending on your shader
+            }
+        }
+
+        private void OnEnable()
+        {
+            GameManager.OnWaterShouldDrain += OnWaterShouldDrain;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.OnWaterShouldDrain -= OnWaterShouldDrain;
+        }
+
+        private void OnWaterShouldDrain()
+        {
+            SetHighlight(true);
+        }
+        
         void Start()
         {
             PlayerUsingModule = null;
             
         }
-
-        // Update is called once per frame
         void Update() {
             if (IsActivated) {
                 State = 1;
@@ -32,6 +55,12 @@ namespace Christopher.Scripts.Modules
                 redLights.SetActive(true);
                 playerDetector.SetActive(false);
             }
+            
+            if (GameManager.Instance.activeModuleCount > 0 || GameManager.Instance.water.transform.position.y <= GameManager.Instance._originalWaterPosition.y)
+            {
+                SetHighlight(false); //disable mat
+            }
+            
             Material[]mats = StateDisplayObject[0].transform.GetComponent<MeshRenderer>().materials;
             mats[3] = StatesMaterials[State];
             StateDisplayObject[0].transform.GetComponent<MeshRenderer>().materials = mats;

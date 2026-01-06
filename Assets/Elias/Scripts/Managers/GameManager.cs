@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -5,6 +6,7 @@ using Elias.Scripts.Minigames;
 using Elias.Scripts.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -24,7 +26,7 @@ namespace Elias.Scripts.Managers
         public PlayerInputManager playerInputManager;
         
         private Quaternion _playerOriginalRotation;
-        private Vector3 _originalWaterPosition;
+        internal Vector3 _originalWaterPosition;
         
         public bool waterWalk;
         
@@ -39,6 +41,10 @@ namespace Elias.Scripts.Managers
         public int activeModuleCount = 0;
 
         public bool hatchActivated;
+        
+        
+        public static event Action OnWaterShouldDrain;
+
 
         private void Awake()
         {
@@ -69,6 +75,7 @@ namespace Elias.Scripts.Managers
         private void Update()
         {
             WaterControl();
+            CheckWaterDrainCondition();
 
             if (hatchActivated && activeModuleCount == 0)
             {
@@ -251,6 +258,14 @@ namespace Elias.Scripts.Managers
         public void AddTargetToCameraGroup(Transform target)
         {
             cameraTargetGroup.AddMember(target, 0, 0);
+        }
+
+        private void CheckWaterDrainCondition()
+        {
+            if (activeModuleCount == 0 && water.transform.position.y > _originalWaterPosition.y)
+            {
+                OnWaterShouldDrain?.Invoke();
+            }
         }
         
     }
