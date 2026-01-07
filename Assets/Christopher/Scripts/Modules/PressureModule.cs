@@ -10,13 +10,16 @@ public class PressureModule : SubmarinModule {
     public float PressureValue;
     public float SpeedIncreasePressure;
     public float SpeedDecreasePressure;
+    
     [SerializeField] private GameObject[] lightStates;
     [SerializeField] private GameObject partyGameDisplay;
-    [SerializeField] private GameObject sliderDisplayLevel;
+    [SerializeField] private Slider sliderDisplayLevel;
+    [SerializeField] private Slider sliderUIX;
     [SerializeField] private AudioClip[] sounds; // 0:start sound  1:runing sound   2:stop sound
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject alarmAudioSource;
     [SerializeField] private AudioSource interactionAudioSource;
+    
     private bool _isStationStarted;
     private bool _isStationStop;
     private bool _needState;
@@ -37,7 +40,8 @@ public class PressureModule : SubmarinModule {
 
     void Update() {
         SoundManaging();
-        sliderDisplayLevel.transform.GetComponent<Slider>().value = PressureValue;
+        sliderDisplayLevel.value = PressureValue;
+        sliderUIX.value = PressureValue;
         if (PressureValue > _maxPressure) PressureValue = _maxPressure;
         if (PressureValue < _minPressure) PressureValue = _minPressure;
         if (IsActivated) {
