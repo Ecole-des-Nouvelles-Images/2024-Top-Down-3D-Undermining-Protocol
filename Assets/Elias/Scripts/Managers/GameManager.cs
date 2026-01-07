@@ -84,8 +84,9 @@ namespace Elias.Scripts.Managers
         
         private void OnPlayerJoined(PlayerInput playerInput)
         {
-            playerVersion++;
+            playerVersion = (playerVersion + 1) % playerModels.Count;
             Debug.Log($"Player joined. Current player version: {playerVersion}");
+            playerInputManager.playerPrefab = playerModels[playerVersion];
         }
 
         private void Update()
