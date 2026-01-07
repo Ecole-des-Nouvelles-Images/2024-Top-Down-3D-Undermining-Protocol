@@ -377,6 +377,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 124023916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &172744998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1781363539916161392, guid: 0d009a240fc40c74d8b69d30af170f1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 504825346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &197890336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1433,7 @@ PrefabInstance:
     - target: {fileID: 1781363539916161392, guid: 0d009a240fc40c74d8b69d30af170f1b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2713091043178030009, guid: 0d009a240fc40c74d8b69d30af170f1b,
         type: 3}
@@ -3589,6 +3595,11 @@ PrefabInstance:
       objectReference: {fileID: 858072872}
     - target: {fileID: 2942345042035274044, guid: ab4cc5bd84f07b04bab10bb6a1308598,
         type: 3}
+      propertyPath: hatchLight
+      value: 
+      objectReference: {fileID: 172744998}
+    - target: {fileID: 2942345042035274044, guid: ab4cc5bd84f07b04bab10bb6a1308598,
+        type: 3}
       propertyPath: cameraTargetGroup
       value: 
       objectReference: {fileID: 798555958}
@@ -3765,7 +3776,7 @@ PrefabInstance:
     - target: {fileID: 8162680578974978168, guid: ab4cc5bd84f07b04bab10bb6a1308598,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8269763697353596416, guid: ab4cc5bd84f07b04bab10bb6a1308598,
         type: 3}
