@@ -74,6 +74,7 @@ namespace Christopher.Scripts.Modules
                 State = 1;
                 playerDetector.SetActive(true);
                 if (_transitionPhase1) {
+                    if(UIInputPhase1.activeSelf)UIInputPhase1.SetActive(false);
                     if(screen.transform.GetComponent<MeshRenderer>().material != displayPhase[1])
                         screen.transform.GetComponent<MeshRenderer>().material = displayPhase[1];
                     playerDetector.SetActive(false);
@@ -89,6 +90,7 @@ namespace Christopher.Scripts.Modules
                     }
                 }
                 if (_transitionPhase2) {
+                    if(UIInputPhase1.activeSelf)UIInputPhase1.SetActive(false);
                     if(screen.transform.GetComponent<MeshRenderer>().material != displayPhase[1])
                         screen.transform.GetComponent<MeshRenderer>().material = displayPhase[1];
                     playerDetector.SetActive(false);
@@ -138,6 +140,7 @@ namespace Christopher.Scripts.Modules
                             }
                             break;
                         case 2:
+                            if(UIInputPhase1.activeSelf)UIInputPhase1.SetActive(false);
                             if (drillHead.transform.GetComponent<DrillEntity>().IsDamaged) IsActivated = false;
                             if (displayPhase.Length > 2) screen.transform.GetComponent<MeshRenderer>().material = displayPhase[2];
                             if (IsPhase2Finish()){endPhase2Message.SetActive(true);}
