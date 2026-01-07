@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Elias.Scripts.Minigames;
 using Elias.Scripts.Player;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -24,7 +28,7 @@ namespace Elias.Scripts.Managers
         public PlayerInputManager playerInputManager;
         
         private Quaternion _playerOriginalRotation;
-        private Vector3 _originalWaterPosition;
+        internal Vector3 _originalWaterPosition;
         
         public bool waterWalk;
         
@@ -40,10 +44,14 @@ namespace Elias.Scripts.Managers
 
         public bool hatchActivated;
 
+        [SerializeField]private GameObject hatchLight;
+
+
         private void Awake()
         {
             playerInputManager = GetComponent<PlayerInputManager>();
-
+            Debug.Log("PlayerInputManager instance: " + GetInstanceID());
+            
             playerVersion = 0;
             playerInputManager.playerPrefab = playerModels[playerVersion];
             
@@ -59,11 +67,26 @@ namespace Elias.Scripts.Managers
         private void OnEnable()
         {
             InputSystem.onDeviceChange += OnDeviceChange;
+            if (playerInputManager != null)
+            {
+                playerInputManager.onPlayerJoined += OnPlayerJoined;
+            }
         }
 
         private void OnDisable()
         {
             InputSystem.onDeviceChange -= OnDeviceChange;
+            if (playerInputManager != null)
+            {
+                playerInputManager.onPlayerJoined -= OnPlayerJoined;
+            }
+        }
+        
+        private void OnPlayerJoined(PlayerInput playerInput)
+        {
+            playerVersion = (playerVersion + 1) % playerModels.Count;
+            Debug.Log($"Player joined. Current player version: {playerVersion}");
+            playerInputManager.playerPrefab = playerModels[playerVersion];
         }
 
         private void Update()
@@ -150,6 +173,7 @@ namespace Elias.Scripts.Managers
                 {
                     case 0:
                         movementSpeed = 0;
+                        CheckWaterDrainCondition();
                         break;
 
                     case 1:
@@ -251,6 +275,11 @@ namespace Elias.Scripts.Managers
         public void AddTargetToCameraGroup(Transform target)
         {
             cameraTargetGroup.AddMember(target, 0, 0);
+        }
+
+        private void CheckWaterDrainCondition()
+        {
+            hatchLight.SetActive(water.transform.position.y > _originalWaterPosition.y);
         }
         
     }

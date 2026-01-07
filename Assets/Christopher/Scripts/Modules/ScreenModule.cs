@@ -4,6 +4,7 @@ using Elias.Scripts.Managers;
 using Elias.Scripts.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Christopher.Scripts.Modules
 {
@@ -13,6 +14,8 @@ namespace Christopher.Scripts.Modules
         public int[] GainByDifficulty;
         public int CurrentPhase;
         public GameObject Submarine;
+        
+        [SerializeField] private GameObject UIInputPhase1;
         [SerializeField] private TMP_Text scoreDisplay;
         [SerializeField] private GameObject scoreCanvas;
         [SerializeField] private Material[] displayPhase;
@@ -31,6 +34,7 @@ namespace Christopher.Scripts.Modules
         [SerializeField] private AudioClip[] phase1Sounds;// 0:navigation  1:pick 
         [SerializeField] private AudioSource transitionAudioSource;  
         [SerializeField] private AudioSource navigationAudioSource;
+        
         private Char _currentSelectionPhase1;
         private float _currentTimerTransition;
         private Vector3 _drillOriginPosition;
@@ -39,6 +43,7 @@ namespace Christopher.Scripts.Modules
         private bool _transitionPhase3;
         
         private void Start() {
+            UIInputPhase1.SetActive(false);
             PlayerUsingModule = null;
             _currentTimerTransition = TimerTransition[0];
             _drillOriginPosition = drillHead.transform.parent.gameObject.transform.position;
@@ -69,6 +74,7 @@ namespace Christopher.Scripts.Modules
                 State = 1;
                 playerDetector.SetActive(true);
                 if (_transitionPhase1) {
+                    if(UIInputPhase1.activeSelf)UIInputPhase1.SetActive(false);
                     if(screen.transform.GetComponent<MeshRenderer>().material != displayPhase[1])
                         screen.transform.GetComponent<MeshRenderer>().material = displayPhase[1];
                     playerDetector.SetActive(false);
@@ -84,6 +90,7 @@ namespace Christopher.Scripts.Modules
                     }
                 }
                 if (_transitionPhase2) {
+                    if(UIInputPhase1.activeSelf)UIInputPhase1.SetActive(false);
                     if(screen.transform.GetComponent<MeshRenderer>().material != displayPhase[1])
                         screen.transform.GetComponent<MeshRenderer>().material = displayPhase[1];
                     playerDetector.SetActive(false);
@@ -118,6 +125,10 @@ namespace Christopher.Scripts.Modules
                 if (!_transitionPhase1 && !_transitionPhase2 && !_transitionPhase3) {
                     switch (CurrentPhase) {
                         case 1:
+                            if (UIInputPhase1.activeSelf != PlayerUsingModule)
+                            {
+                                UIInputPhase1.SetActive(PlayerUsingModule);
+                            }
                             if(screen.transform.GetComponent<MeshRenderer>().material != displayPhase[1])
                                 screen.transform.GetComponent<MeshRenderer>().material = displayPhase[1];
                             for (int i = 0; i < PanelPhase1.Length; i++) {
@@ -129,6 +140,7 @@ namespace Christopher.Scripts.Modules
                             }
                             break;
                         case 2:
+                            if(UIInputPhase1.activeSelf)UIInputPhase1.SetActive(false);
                             if (drillHead.transform.GetComponent<DrillEntity>().IsDamaged) IsActivated = false;
                             if (displayPhase.Length > 2) screen.transform.GetComponent<MeshRenderer>().material = displayPhase[2];
                             if (IsPhase2Finish()){endPhase2Message.SetActive(true);}

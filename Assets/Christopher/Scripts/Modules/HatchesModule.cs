@@ -11,14 +11,12 @@ namespace Christopher.Scripts.Modules
         [SerializeField] private GameObject redLights;
         [SerializeField] private AudioSource audioSource;
         
-        // Start is called before the first frame update
+        
         void Start()
         {
             PlayerUsingModule = null;
             
         }
-
-        // Update is called once per frame
         void Update() {
             if (IsActivated) {
                 State = 1;
@@ -32,6 +30,7 @@ namespace Christopher.Scripts.Modules
                 redLights.SetActive(true);
                 playerDetector.SetActive(false);
             }
+            
             Material[]mats = StateDisplayObject[0].transform.GetComponent<MeshRenderer>().materials;
             mats[3] = StatesMaterials[State];
             StateDisplayObject[0].transform.GetComponent<MeshRenderer>().materials = mats;

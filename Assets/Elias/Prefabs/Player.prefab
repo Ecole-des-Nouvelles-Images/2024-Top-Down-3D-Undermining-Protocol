@@ -7279,10 +7279,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.39228642
-  m_Height: 2.3237329
+  m_Radius: 0.2
+  m_Height: 2.65
   m_Direction: 1
-  m_Center: {x: 0.011552374, y: -0.16186452, z: -0.008086006}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4067089996365625284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7326,12 +7326,16 @@ MonoBehaviour:
   MyItem: 0
   speed: 500
   inputInteractPanel: {fileID: 5186500885113976908}
+  inputThrowPanel: {fileID: 0}
+  inputActivatePanel: {fileID: 0}
   itemsDisplay:
   - {fileID: 3046584091251271790}
   - {fileID: 1816211214416452489}
   - {fileID: 3829543115539229805}
   animator: {fileID: 1422245354938354552}
   playerSteps: []
+  audioSource: {fileID: 0}
+  _playerHint: {fileID: 0}
 --- !u!114 &8221284705475947638
 MonoBehaviour:
   m_ObjectHideFlags: 0

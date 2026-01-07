@@ -10,13 +10,16 @@ public class PressureModule : SubmarinModule {
     public float PressureValue;
     public float SpeedIncreasePressure;
     public float SpeedDecreasePressure;
+    
     [SerializeField] private GameObject[] lightStates;
     [SerializeField] private GameObject partyGameDisplay;
-    [SerializeField] private GameObject sliderDisplayLevel;
+    [SerializeField] private Slider sliderDisplayLevel;
+    [SerializeField] private Slider sliderUIX;
     [SerializeField] private AudioClip[] sounds; // 0:start sound  1:runing sound   2:stop sound
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject alarmAudioSource;
     [SerializeField] private AudioSource interactionAudioSource;
+    
     private bool _isStationStarted;
     private bool _isStationStop;
     private bool _needState;
@@ -33,11 +36,20 @@ public class PressureModule : SubmarinModule {
         IsActivated = true;
         PlayerUsingModule = null;
         partyGameDisplay.SetActive(false);
+        sliderDisplayLevel.maxValue = _maxPressure;
+        sliderDisplayLevel.minValue = _minPressure;
+        sliderUIX.maxValue = _maxPressure;
+        sliderUIX.minValue = _minPressure;
+        sliderDisplayLevel.value = PressureValue;
+        sliderUIX.value = PressureValue;
+        playerDetector.SetActive(false);
     }
 
     void Update() {
         SoundManaging();
-        sliderDisplayLevel.transform.GetComponent<Slider>().value = PressureValue;
+        sliderDisplayLevel.value = PressureValue;
+        sliderUIX.value = PressureValue;
+        
         if (PressureValue > _maxPressure) PressureValue = _maxPressure;
         if (PressureValue < _minPressure) PressureValue = _minPressure;
         if (IsActivated) {
@@ -45,7 +57,15 @@ public class PressureModule : SubmarinModule {
             PressureValue -= Time.deltaTime * SpeedIncreasePressure;
             if (PressureValue < _redZone1 || PressureValue > _redZone2) State = 3;
             else if (PressureValue < _yellowZone1 || PressureValue > _yellowZone2) State = 2;
-            else State = 1;
+            else
+            {
+                State = 1;
+            }
+            if (PressureValue < 1.01 && PlayerUsingModule)
+            {
+                PlayerUsingModule.GetComponent<PlayerController>().QuitInteraction();
+                StopInteract();
+            }
         } 
         else {
             playerDetector.SetActive(false);
@@ -70,6 +90,7 @@ public class PressureModule : SubmarinModule {
                 lightStates[2].SetActive(false);
                 _needState = false;
                 _urgentState = false;
+                if (playerDetector.activeSelf)playerDetector.SetActive(false);
                 break;
             case 2:
                 lightStates[0].SetActive(false);
@@ -77,6 +98,7 @@ public class PressureModule : SubmarinModule {
                 lightStates[2].SetActive(false);
                 _needState = true;
                 _urgentState = false;
+                if (playerDetector.activeSelf)playerDetector.SetActive(true);
                 break;
             case 3:
                 lightStates[0].SetActive(false);
@@ -84,6 +106,7 @@ public class PressureModule : SubmarinModule {
                 lightStates[2].SetActive(true);
                 _needState = false;
                 _urgentState = true;
+                if (playerDetector.activeSelf)playerDetector.SetActive(true);
                 break;
         }
 

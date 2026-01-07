@@ -81,6 +81,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0621cd418443844baa86d25e62c289b, type: 2}
   - {fileID: 11400000, guid: f9ccdf7f1f9c5f745b83034ea1a40213, type: 2}
   noActiveBreach: 0
+  generatorTimer: 0
   activePhase: 1
   audioClips:
   - {fileID: 8300000, guid: fb0bb7260bce2e04bab9fd23342d952b, type: 3}
