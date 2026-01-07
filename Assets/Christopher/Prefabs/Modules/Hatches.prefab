@@ -1552,3 +1552,4 @@ MonoBehaviour:
   greenLights: {fileID: 4986868635961856023}
   redLights: {fileID: 8026155545286871265}
   audioSource: {fileID: 7527922846786633019}
+  activeLight: {fileID: 1781363539916161392}

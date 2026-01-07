@@ -49,7 +49,7 @@ namespace Elias.Scripts.Managers
         
         private void Awake()
         {
-            _lights = FindObjectsOfType<LightColorAnimation>(true); // 'true' if you want inactive lights;
+            _lights = FindObjectsOfType<LightColorAnimation>(true);
             _audioSource = GetComponent<AudioSource>();
         }
 

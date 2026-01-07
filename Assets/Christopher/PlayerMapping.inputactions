@@ -81,7 +81,7 @@
                     "name": "PlayerJoin",
                     "type": "Button",
                     "id": "95bebe6e-d545-4f8a-a16f-26fc1569c0a9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,7 +90,7 @@
                     "name": "ThrowItem",
                     "type": "Button",
                     "id": "bc60403b-df7a-4d11-872c-d4c8729af609",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

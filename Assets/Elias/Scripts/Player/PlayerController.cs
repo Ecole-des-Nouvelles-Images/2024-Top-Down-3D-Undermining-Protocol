@@ -61,13 +61,15 @@ namespace Elias.Scripts.Player
 
         public Transform _playerHint;
         
+        public void InitModel(GameObject model)
+        {
+            model.transform.localPosition = Vector3.zero;
+            model.transform.localRotation = Quaternion.identity;
+        }
+
+        
         private void Start()
         {
-            GameManager.Instance.playerVersion++;
-            GameManager.Instance.playerInputManager.playerPrefab =
-                GameManager.Instance.playerModels[GameManager.Instance.playerVersion];
-            
-            
             if (_playerHint != null)
             {
                 GameManager.Instance.AddTargetToCameraGroup(_playerHint);
